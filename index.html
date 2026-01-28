@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HosiLink Presentation</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+/* 1. THE SETUP */
+
+* { box-sizing: border-box; }
+
+body {
+
+  background-color: #f1f5f9;
+
+  display: grid;
+
+  gap: 20px;
+
+  grid-template-columns: 1fr;
+
+  margin: 0;
+
+  min-height: 100vh;
+
+  padding: 20px 0;
+
+  place-items: center;
+
+  font-family: 'Cairo', sans-serif;
+
+}
+
+.slide-container {
+
+  align-items: center;
+
+  background-color: #fff;
+
+  border-radius: 16px;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+
+  flex-direction: column;
+
+  height: 720px;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  padding: 60px;
+
+  position: relative;
+
+  width: 1280px;
+
+}
+
+/* Branding Colors */
+
+:root {
+
+    --primary: #0d9488; /* Teal 600 */
+
+    --secondary: #115e59; /* Teal 800 */
+
+    --accent: #f0fdfa; /* Teal 50 */
+
+    --bg-illustration: #e0f2fe;
+
+    --text-dark: #1e293b;
+
+    --text-light: #64748b;
+
+}
+
+.slide-container::before {
+
+  content: '';
+
+  height: 100%;
+
+  left: 0;
+
+  position: absolute;
+
+  top: 0;
+
+  width: 100%;
+
+  z-index: 0;
+
+  background: radial-gradient(circle at 10% 10%, var(--accent), transparent 40%);
+
+}
+
+.slide-container>* { position: relative; z-index: 1; }
+
+/* 2. TYPOGRAPHY */
+
+.slide-container h1, .slide-container h2, .slide-container h3 {
+
+  color: var(--secondary);
+
+  font-weight: 800;
+
+  margin: 0;
+
+  line-height: 1.2;
+
+}
+
+.slide-container p, .slide-container li {
+
+  color: var(--text-dark);
+
+  font-size: 22px; /* Increased slightly for better read */
+
+  line-height: 1.6;
+
+}
+
+.slide-container h1 { font-size: 72px; }
+
+.slide-container .slide-title {
+
+  font-size: 48px;
+
+  margin-bottom: 40px;
+
+  text-align: right;
+
+  width: 100%;
+
+  border-right: 6px solid var(--primary);
+
+  padding-right: 20px;
+
+}
+
+.slide-container h3 {
+
+  font-size: 28px;
+
+  font-weight: 700;
+
+  margin-bottom: 10px;
+
+  color: var(--primary);
+
+}
+
+/* 3. LAYOUTS & COMPONENTS */
+
+.title-layout { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+.title-layout h1 { color: var(--primary); }
+
+.title-layout .subtitle { font-size: 28px; color: var(--text-light); max-width: 800px; }
+
+.two-column {
+
+  align-items: center;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 60px;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+/* 4. VISUAL ILLUSTRATIONS (The Fix) */
+
+.illustration-box {
+
+    background-color: var(--bg-illustration);
+
+    border-radius: 20px;
+
+    height: 400px;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #bae6fd;
+
+}
+
+.illustration-content {
+
+    text-align: center;
+
+    color: var(--primary);
+
+}
+
+.illustration-content i {
+
+    font-size: 80px;
+
+    margin-bottom: 15px;
+
+    opacity: 0.9;
+
+}
+
+/* Slide 2 Visual: Crowded */
+
+.people-group { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+
+.people-group i { font-size: 40px; color: #64748b; }
+
+/* Slide 3 Visual: Network */
+
+.network-grid { position: relative; width: 100%; height: 100%; }
+
+.net-node { position: absolute; background: white; padding: 15px; border-radius: 50%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: var(--primary); font-size: 24px; z-index: 2; }
+
+.net-center { top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; padding: 30px; border: 4px solid var(--primary); }
+
+.net-1 { top: 20%; left: 20%; }
+
+.net-2 { top: 20%; right: 20%; }
+
+.net-3 { bottom: 20%; left: 30%; }
+
+.net-line { position: absolute; background: #94a3b8; height: 2px; z-index: 1; transform-origin: 0 0; }
+
+/* Slide 5 Visual: Radar */
+
+.radar-container { position: relative; width: 200px; height: 200px; display: flex; justify-content: center; align-items: center; }
+
+.radar-ring {
+
+    position: absolute;
+
+    border: 4px solid var(--primary);
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    animation: pulse 2s infinite;
+
+}
+
+.radar-ring:nth-child(1) { width: 100%; height: 100%; animation-delay: 0s; }
+
+.radar-ring:nth-child(2) { width: 70%; height: 70%; animation-delay: 0.5s; }
+
+.radar-ring:nth-child(3) { width: 40%; height: 40%; animation-delay: 1s; }
+
+@keyframes pulse {
+
+    0% { transform: scale(0.8); opacity: 1; }
+
+    100% { transform: scale(1.5); opacity: 0; }
+
+}
+
+/* Slide 6 Visual: Dashboard Mockup */
+
+.mock-dash { background: white; width: 80%; height: 70%; border-radius: 10px; padding: 20px; display: grid; grid-template-columns: 1fr 2fr; gap: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+.dash-sidebar { background: #f1f5f9; border-radius: 8px; }
+
+.dash-main { display: flex; flex-direction: column; gap: 10px; }
+
+.dash-header { height: 40px; background: #e2e8f0; border-radius: 8px; width: 100%; }
+
+.dash-chart { height: 100px; background: var(--accent); border-radius: 8px; border: 2px solid var(--primary); position: relative; }
+
+.dash-bar { position: absolute; bottom: 0; width: 20px; background: var(--primary); border-radius: 4px 4px 0 0; }
+
+/* Tiled Content */
+
+.tiled-content { align-items: stretch; display: flex; gap: 30px; justify-content: center; width: 100%; }
+
+.tile { background-color: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; text-align: center; flex: 1; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s; }
+
+.tile .icon { color: var(--primary); font-size: 50px; margin-bottom: 20px; }
+
+/* Timeline & Lists */
+
+.timeline-layout { display: flex; justify-content: space-between; position: relative; width: 100%; margin-top: 50px; }
+
+.timeline-line { background-color: #e2e8f0; height: 4px; position: absolute; top: 40px; width: 100%; z-index: 0; }
+
+.timeline-item { position: relative; text-align: center; width: 23%; z-index: 1; }
+
+.timeline-dot { background-color: var(--primary); border: 4px solid #fff; border-radius: 50%; height: 30px; width: 30px; margin: 25px auto; box-shadow: 0 0 0 4px var(--accent); }
+
+ul { padding-right: 25px; list-style: none; }
+
+li { margin-bottom: 15px; position: relative; }
+
+li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--primary); position: absolute; right: -30px; top: 5px; }
+
+/* Highlight Numbers */
+
+.highlight-numbers-layout { display: flex; justify-content: space-around; width: 100%; margin-top: 40px; }
+
+.highlight-item { text-align: center; }
+
+.highlight-item .number { font-size: 80px; font-weight: 900; color: var(--primary); display: block; }
+
+.highlight-item .label { font-size: 24px; font-weight: 600; color: var(--text-dark); }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- Slide 1: Title -->
+
+<div class="slide-container" id="slide1">
+
+    <div class="title-layout">
+
+        <div style="font-size: 100px; color: var(--primary); margin-bottom: 20px;">
+
+            <i class="fa-solid fa-link-slash fa-spin" style="animation-duration: 3s;"></i>
+
+        </div>
+
+        <h1>HosiLink</h1>
+
+        <p class="subtitle">نظام الربط الطبي الذكي لإدارة موارد المستشفيات والطوارئ</p>
+
+        <div style="margin-top: 40px; font-weight: 600; color: var(--text-light); background: var(--accent); padding: 10px 30px; border-radius: 50px;">
+
+            مشروع التخرج / النظام المقترح
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Slide 2: The Problem -->
+
+<div class="slide-container" id="slide2">
+
+    <h2 class="slide-title">المشكلة الحالية</h2>
+
+    <div class="two-column">
+
+        <div>
+
+            <ul>
+
+                <li><strong>ضياع الوقت الحرج:</strong> يقضي المريض وقتاً طويلاً في التنقل بين المستشفيات.</li>
+
+                <li><strong>غياب المعلومات:</strong> لا يوجد مصدر موحد لمعرفة أسرة العناية المركزة الفارغة.</li>
+
+                <li><strong>سوء التوزيع:</strong> تكدس في مستشفى معين بينما توجد أماكن فارغة بجواره.</li>
+
+                <li><strong>الضغط على الطوارئ:</strong> استقبال حالات لا يمكن خدمتها لعدم توفر الموارد.</li>
+
+            </ul>
+
+        </div>
+
+        <!-- Visual: Crowded Waiting Room Illustration -->
+
+        <div class="illustration-box">
+
+            <div class="illustration-content">
+
+                <i class="fa-solid fa-hourglass-half" style="color: #ef4444;"></i>
+
+                <h3 style="color: #ef4444;">وقت ضائع = خطر</h3>
+
+                <div class="people-group">
+
+                    <i class="fa-solid fa-user-injured"></i>
+
+                    <i class="fa-solid fa-user-injured"></i>
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <i class="fa-solid fa-user-nurse"></i>
+
+                </div>
+
+                <p style="font-size: 16px; margin-top: 10px; opacity: 0.7;">تكدس وضغط عمل</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Slide 3: The Solution -->
+
+<div class="slide-container" id="slide3">
+
+    <h2 class="slide-title">الحل: منصة HosiLink</h2>
+
+    <div class="two-column">
+
+        <!-- Visual: Connected Network Diagram -->
+
+        <div class="illustration-box" style="background: white; border: none;">
+
+            <div class="network-grid">
+
+                <!-- Lines (Simulated with absolute divs) -->
+
+                <div style="position:absolute; top:50%; left:50%; width:150px; height:2px; background:#cbd5e1; transform:translate(-50%, -50%) rotate(-45deg);"></div>
+
+                <div style="position:absolute; top:50%; left:50%; width:150px; height:2px; background:#cbd5e1; transform:translate(-50%, -50%) rotate(45deg);"></div>
+
+                <div style="position:absolute; top:50%; left:50%; width:150px; height:2px; background:#cbd5e1; transform:translate(-50%, -50%) rotate(180deg);"></div>
+
+                
+
+                <!-- Nodes -->
+
+                <div class="net-node net-center"><i class="fa-solid fa-server"></i></div>
+
+                <div class="net-node net-1"><i class="fa-solid fa-hospital"></i></div>
+
+                <div class="net-node net-2"><i class="fa-solid fa-user-injured"></i></div>
+
+                <div class="net-node net-3"><i class="fa-solid fa-ambulance"></i></div>
+
+            </div>
+
+            <div style="position: absolute; bottom: 20px; font-weight: bold; color: var(--primary);">شبكة بيانات مركزية</div>
+
+        </div>
+
+        <div>
+
+            <h3 style="margin-bottom: 20px; font-size: 32px;">ربط لحظي للجميع</h3>
+
+            <p>منصة مركزية تربط بين المرضى وجميع المستشفيات في المنطقة الجغرافية في الوقت الفعلي.</p>
+
+            <ul style="margin-top: 20px;">
+
+                <li>قاعدة بيانات سحابية موحدة (Cloud DB).</li>
+
+                <li>تحديث لحظي (Real-time) لعدد الأسرة.</li>
+
+                <li>واجهة مزدوجة (تطبيق مريض + لوحة مستشفى).</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Slide 4: Patient Features -->
+
+<div class="slide-container" id="slide4">
+
+    <h2 class="slide-title">مميزات تطبيق المريض</h2>
+
+    <div class="tiled-content">
+
+        <div class="tile">
+
+            <div class="icon"><i class="fa-solid fa-map-location-dot"></i></div>
+
+            <h3>البحث الجغرافي</h3>
+
+            <p>تحديد موقع المريض تلقائياً وعرض المستشفيات المحيطة مرتبة حسب المسافة.</p>
+
+        </div>
+
+        <div class="tile">
+
+            <div class="icon"><i class="fa-solid fa-bed-pulse"></i></div>
+
+            <h3>التوافر اللحظي</h3>
+
+            <p>رؤية عدد الأسرة المتاحة (عناية، طوارئ) بالألوان (أخضر/أحمر) قبل التحرك.</p>
+
+        </div>
+
+        <div class="tile">
+
+            <div class="icon"><i class="fa-solid fa-route"></i></div>
+
+            <h3>التوجيه الذكي</h3>
+
+            <p>نظام ملاحة يوجهك لأقرب مستشفى "متاح" وليس الأقرب مسافة فقط.</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Slide 5: The "Smart Search" Feature -->
+
+<div class="slide-container" id="slide5">
+
+    <h2 class="slide-title">خوارزمية البحث الذكي (Smart Expansion)</h2>
+
+    <div class="two-column">
+
+        <div>
+
+            <h3 style="color: #0d9488; font-size: 30px; margin-bottom: 20px;">كيف يعمل النظام عند الامتلاء؟</h3>
+
+            <p>الميزة الأهم في HosiLink هي التعامل مع حالات "عدم التوافر":</p>
+
+            <ul>
+
+                <li><strong>1. المسح المحلي:</strong> البحث في نطاق المنطقة السكنية للمريض.</li>
+
+                <li><strong>2. التوسيع التلقائي:</strong> إذا كانت النتائج = 0، يقوم النظام <strong>تلقائياً</strong> بتوسيع قطر البحث.</li>
+
+                <li><strong>النتيجة:</strong> اقتراح "أقرب بديل متاح" في منطقة مجاورة بدلاً من الرفض.</li>
+
+            </ul>
+
+        </div>
+
+        <!-- Visual: Radar Animation -->
+
+        <div class="illustration-box">
+
+            <div class="radar-container">
+
+                <div class="radar-ring"></div>
+
+                <div class="radar-ring"></div>
+
+                <div class="radar-ring"></div>
+
+                <i class="fa-solid fa-location-crosshairs" style="font-size: 50px; color: var(--primary); z-index: 5;"></i>
+
+            </div>
+
+            <div style="position: absolute; bottom: 30px; font-weight: bold; color: var(--text-light);">جاري توسيع نطاق البحث...</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Slide 6: Hospital Dashboard -->
+
+<div class="slide-container" id="slide6">
+
+    <h2 class="slide-title">لوحة تحكم المستشفى</h2>
+
+    <div class="two-column">
+
+        <!-- Visual: Dashboard UI Mockup -->
+
+        <div class="illustration-box">
+
+            <div class="mock-dash">
+
+                <div class="dash-sidebar"></div>
+
+                <div class="dash-main">
+
+                    <div class="dash-header"></div>
+
+                    <div class="dash-chart">
+
+                        <div class="dash-bar" style="height: 60%; left: 10px;"></div>
+
+                        <div class="dash-bar" style="height: 80%; left: 40px;"></div>
+
+                        <div class="dash-bar" style="height: 40%; left: 70px;"></div>
+
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+
+                        <div style="height: 40px; width: 40px; background: #fee2e2; border-radius: 50%;"></div>
+
+                        <div style="height: 40px; flex-grow: 1; background: #f1f5f9; border-radius: 4px;"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <ul>
+
+                <li><strong>إدارة الموارد:</strong> واجهة سهلة لتحديث عدد الأسرة بضغطة زر.</li>
+
+                <li><strong>مراقبة المخزون:</strong> تتبع مخزون الأدوية وأكياس الدم.</li>
+
+                <li><strong>إدارة الطاقم الطبي:</strong> تسجيل عدد الأطباء المناوبين.</li>
+
+                <li><strong>تحليلات البيانات:</strong> تقارير عن أوقات الذروة ونسب الإشغال.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Slide 7: Expected Impact -->
+
+<div class="slide-container" id="slide7">
+
+    <h2 class="slide-title">التأثير المتوقع للمشروع</h2>
+
+    <div class="highlight-numbers-layout">
+
+        <div class="highlight-item">
+
+            <span class="number">40%</span>
+
+            <span class="label">تقليل زمن الانتظار</span>
+
+        </div>
+
+        <div class="highlight-item">
+
+            <span class="number">95%</span>
+
+            <span class="label">دقة البيانات</span>
+
+        </div>
+
+        <div class="highlight-item">
+
+            <span class="number">24/7</span>
+
+            <span class="label">استجابة فورية</span>
+
+        </div>
+
+    </div>
+
+    <p style="text-align: center; margin-top: 50px; font-size: 26px; max-width: 800px; color: var(--secondary); font-weight: bold;">
+
+        "هدفنا الأسمى هو إنقاذ الأرواح عبر المعلومة الصحيحة في الوقت الصحيح"
+
+    </p>
+
+</div>
+
+<!-- Slide 8: Roadmap -->
+
+<div class="slide-container" id="slide8">
+
+    <h2 class="slide-title">خطة التطوير المستقبلية</h2>
+
+    <div class="timeline-layout">
+
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <h3>Q1 2024</h3>
+
+            <p>إطلاق نسخة الويب التجريبية (MVP).</p>
+
+        </div>
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <h3>Q2 2024</h3>
+
+            <p>تطبيق الموبايل (iOS & Android).</p>
+
+        </div>
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <h3>Q3 2024</h3>
+
+            <p>الربط مع هيئة الإسعاف.</p>
+
+        </div>
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <h3>Q4 2024</h3>
+
+            <p>تفعيل الذكاء الاصطناعي (AI).</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Slide 9: End -->
+
+<div class="slide-container" id="slide9" style="background-color: var(--primary);">
+
+    <div class="title-layout">
+
+        <h1 style="color: #fff;">شكراً لكم</h1>
+
+        <p class="subtitle" style="color: #ccfbf1;">نستقبل أسئلتكم الآن</p>
+
+        <div style="margin-top: 40px; color: #fff; font-size: 24px;">
+
+            <i class="fa-solid fa-envelope" style="margin-left: 10px;"></i> contact@hosilink.com
+
+        </div>
+
+        <div style="margin-top: 20px; font-size: 80px; color: rgba(255,255,255,0.2);">
+
+            <i class="fa-solid fa-comments"></i>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+
